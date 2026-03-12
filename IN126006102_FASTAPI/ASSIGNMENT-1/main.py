@@ -6,6 +6,9 @@ app = FastAPI()
 def home():
     return {"message": "Welcome to the Product API!"}
 
+#---------------------------------------------Day 1-----------------------------------------------
+
+#--------------------------------------------- Q 1 -----------------------------------------------
 products = [
     {"id": 1, "name": "Smartphone", "price": 15000, "category": "Electronics", "in_stock": True},
     {"id": 2, "name": "Headphones", "price": 2000, "category": "Electronics", "in_stock": True},
@@ -24,6 +27,7 @@ def get_products():
         "total": len(products)
     }
 
+#--------------------------------------------- Q 2 -----------------------------------------------
 @app.get("/products/category/{category_name}")
 def get_by_category(category_name: str):
     result = [p for p in products if p["category"] == category_name]
@@ -37,6 +41,7 @@ def get_by_category(category_name: str):
         "total": len(result)
     }
 
+#--------------------------------------------- Q 3 -----------------------------------------------
 @app.get("/products/instock")
 def get_instock():
     available = [p for p in products if p["in_stock"] == True]
@@ -46,6 +51,7 @@ def get_instock():
         "count": len(available)
     }
 
+#--------------------------------------------- Q 4 -----------------------------------------------
 @app.get("/store/summary")
 def store_summary():
     in_stock_count = len([p for p in products if p["in_stock"]])
@@ -60,6 +66,7 @@ def store_summary():
         "categories": categories
     }
 
+#--------------------------------------------- Q 5 -----------------------------------------------
 @app.get("/products/search/{keyword}")
 def search_products(keyword: str):
     results = [
@@ -76,6 +83,7 @@ def search_products(keyword: str):
         "total_matches": len(results)
     }
 
+#----------------------------------------- Bonus Question -------------------------------------------
 @app.get("/products/deals")
 def get_deals():
     cheapest = min(products, key=lambda p: p["price"])
@@ -85,3 +93,4 @@ def get_deals():
         "best_deal": cheapest,
         "premium_pick": expensive
     }
+
