@@ -225,7 +225,7 @@ def place_bulk_order(order: BulkOrder):
         "grand_total": grand_total
     }
 
-
+#----------------------------------------- Bonus Question -------------------------------------------
 orders = []
 class OrderRequest(BaseModel):
     product_id: int
@@ -246,7 +246,7 @@ def place_order(order: OrderRequest):
         "product": product["name"],
         "quantity": order.quantity,
         "total_price": product["price"] * order.quantity,
-        "status": "pending"   # IMPORTANT CHANGE
+        "status": "pending"  
     }
     orders.append(new_order)
 
